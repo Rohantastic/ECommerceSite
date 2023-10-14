@@ -2,14 +2,15 @@ import React, { useContext } from 'react'
 import "./Cart.css";
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import { CartContext } from '../contexts/CartContext';
+import { CartItemContext } from '../contexts/CartItemContext';
+
 
 
 
 const Cart = () => {
 
-    const cartData = useContext(CartContext);
-    console.log(cartData);
+    const cartData = useContext(CartItemContext); 
+    console.log("carting:: ", cartData);
     return (
         <>
             <Header />
@@ -25,11 +26,11 @@ const Cart = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {cartData.cartElements.map((item,index)=>(
+                            {cartData.data.map((item,index)=>(
                                 <tr key={index}>
                                     <td>{item.price}</td>
                                     <td>{item.title}</td>
-                                    <td>{item.quantity} <button>Remove</button></td>
+                                    <td>{item.quantity} <button onClick={()=>{cartData.removeFromCart(index)}}>Remove</button></td>
                                 </tr>
                             ))}
                         </tbody>

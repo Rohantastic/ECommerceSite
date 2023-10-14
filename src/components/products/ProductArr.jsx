@@ -3,6 +3,7 @@ import Product from './Product';
 import './ProductArr.css';
 
 const ProductArr = () => {
+  
   const productsArr = [
     {
       id:1,
@@ -29,6 +30,8 @@ const ProductArr = () => {
       imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
     }
   ];
+
+
 
   console.log("inside productsarr");
   return (
