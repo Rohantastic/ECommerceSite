@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbar.css";
-import { CartContext } from '../contexts/CartContext';
+import CartItemContext from "../contexts/CartItemContext";
 
 const Navbar = (props) => {
-  const count = useContext(CartContext); 
+  const count = useContext(CartItemContext); 
   let quantity = 0;
-  for(let i = 0 ; i < count.cartElements.length ; i++){
-    quantity+= count.cartElements[i].quantity;
-  }
+
+  // for(let i = 0 ; i < count.length ; i++){
+  //   quantity+= count.cartElements[i].quantity;
+  // }
 
   return (
     <nav>

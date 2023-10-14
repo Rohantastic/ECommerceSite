@@ -3,9 +3,12 @@ import React, { createContext, useState } from "react";
 export const CartItemContext = createContext(null);
 
 const CartItemProvider = (props) => {
+  const [count,setCount] = useState(0);
   const [data, setData] = useState([]);
 
   const addToCart = (product) => {
+
+    setCount(count+1);
     const existingData = data.find((item) => item.id === product.id);
     if (existingData) {
       const updatedData = data.map((item) =>
@@ -26,6 +29,7 @@ const CartItemProvider = (props) => {
     addToCart,
     removeFromCart,
     data,
+    count
   };
 
   console.log(data);
