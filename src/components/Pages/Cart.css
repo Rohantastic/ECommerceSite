@@ -1,0 +1,13 @@
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* This centers the content vertically within the viewport */
+  }
+  
+  .cart-table {
+    height: 50vh;
+    width: 60vw;
+  }
+  

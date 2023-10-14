@@ -1,0 +1,15 @@
+#the-generics-text{
+    position: static;
+    height: 150px;
+    width: 100%;
+    background-color: gray;
+    color: white;
+}
+
+#the-generics-text h1{
+    padding-top: 50px;
+    text-align: center;
+    font-size: 60px;
+    font-style: italic;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
