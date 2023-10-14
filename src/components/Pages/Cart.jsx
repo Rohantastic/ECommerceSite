@@ -29,7 +29,7 @@ const Cart = () => {
                                 <tr key={index}>
                                     <td>{item.price}</td>
                                     <td>{item.title}</td>
-                                    <td>{item.quantity}</td>
+                                    <td>{item.quantity} <button>Remove</button></td>
                                 </tr>
                             ))}
                         </tbody>
