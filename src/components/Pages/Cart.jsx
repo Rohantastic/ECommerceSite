@@ -7,10 +7,10 @@ import { CartItemContext } from '../contexts/CartItemContext';
 const Cart = () => {
     const cartData = useContext(CartItemContext);
 
-    let noDataPresent = 0; // Initialize it to 0
+    let noDataPresent = 0; 
 
     if (cartData.data.length === 0) {
-        noDataPresent = 1; // Set it to 1 if cartData.data is empty
+        noDataPresent = 1; 
     }
 
     return (

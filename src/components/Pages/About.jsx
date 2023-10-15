@@ -1,12 +1,14 @@
 import React from 'react'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
+import "./About.css";
+
 
 const About = () => {
   return (
     <>
         <Header/>
-            <div>
+            <div className='about-us-container'>
                 <h1>About US: </h1>
                 <p>
                 Contrary to popular belief, Lorem Ipsum is not simply random text. 
@@ -25,4 +27,4 @@ const About = () => {
   )
 }
 
-export default About
+export default About;

@@ -16,6 +16,7 @@ const Navbar = (props) => {
       <Link to="/">Home</Link>
       <Link to="/store">Store</Link>
       <Link to="/about">About</Link>
+      <Link to="contact">Contact us</Link>
       <Link to="/cart" id="cart-button" onClick={props.onClick}>Cart <span id="cart-amount">{quantity}</span></Link>
     </nav>
   );

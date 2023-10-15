@@ -1,0 +1,30 @@
+.contact-us-form {
+    text-align: center;
+  }
+  
+  .contact-us-form form {
+    display: inline-block;
+    text-align: left;
+    margin: 0 auto;
+    width: 400px; 
+    padding: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  }
+  
+  .contact-us-form label {
+    display: block;  
+    margin-bottom: 10px;  
+    font-weight: bold; 
+  }
+  
+  .contact-us-form input {
+    margin-top: 20px;
+    width: 80%; 
+    padding: 10px;
+    margin-bottom: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+  }
+  
