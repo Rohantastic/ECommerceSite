@@ -8,7 +8,13 @@ nav{
     gap: 80px;
     position: fixed;
 }
-
+.navbar-div a:hover,
+.navbar-div a:active,
+.navbar-div a.active{
+    color: #95bcf0;
+    padding-bottom: 0.25rem;
+    border-bottom: 4px solid #95bcf0;
+}
 a{
     text-decoration: none;
     color: white;

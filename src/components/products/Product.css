@@ -1,17 +1,36 @@
-img {
-  width: 250px;
-  height: 250px;
-  transition: transform 0.3s; 
+/* Product.css */
+
+.music-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 20px;
+  text-align: center;
 }
 
-img:hover {
-  transform: scale(0.8); 
+.product-image {
+  width: 250px;
+  height: 250px;
+  transition: transform 0.3s;
 }
-button{
+
+.product-image:hover {
+  transform: scale(0.8);
+}
+
+.cart-button {
   border: none;
   width: 100px;
   height: 20px;
   color: white;
   cursor: pointer;
   background-color: rgb(120, 199, 255);
+}
+
+.music-items-link {
+  color: black;
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import "./Navbar.css";
 import CartItemContext from "../contexts/CartItemContext";
 
@@ -12,12 +12,12 @@ const Navbar = (props) => {
   // }
 
   return (
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/store">Store</Link>
-      <Link to="/about">About</Link>
-      <Link to="contact">Contact us</Link>
-      <Link to="/cart" id="cart-button" onClick={props.onClick}>Cart <span id="cart-amount">{quantity}</span></Link>
+    <nav className='navbar-div'>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/store">Store</NavLink>
+      <NavLink to="/about">About</NavLink>
+      <NavLink to="/contact">Contact us</NavLink>
+      <NavLink to="/cart" id="cart-button" onClick={props.onClick}>Cart <span id="cart-amount">{quantity}</span></NavLink>
     </nav>
   );
 }

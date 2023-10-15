@@ -30,9 +30,7 @@ const ProductArr = () => {
       imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
     }
   ];
-
-
-
+  
   console.log("inside productsarr");
   return (
     <>
