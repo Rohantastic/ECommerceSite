@@ -17,6 +17,7 @@ const Navbar = (props) => {
       <NavLink to="/store">Store</NavLink>
       <NavLink to="/about">About</NavLink>
       <NavLink to="/contact">Contact us</NavLink>
+      <NavLink to="/login">Log In</NavLink>
       <NavLink to="/cart" id="cart-button" onClick={props.onClick}>Cart <span id="cart-amount">{quantity}</span></NavLink>
     </nav>
   );
