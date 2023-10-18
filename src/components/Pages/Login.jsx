@@ -3,9 +3,16 @@ import Header from '../common/Header';
 import Footer from '../common/Footer';
 import AuthContext from '../contexts/AuthContext';
 import './Login.css';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const navigateToStore=()=>{
+    navigate("/store");
+  }
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,6 +50,8 @@ const Login = () => {
         
         authCtx.login(data.idToken, data.localId);
         alert('Authentication successful!'); 
+        navigateToStore();
+
       })
       .catch((err) => {
         console.error(err);

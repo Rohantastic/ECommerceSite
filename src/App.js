@@ -12,12 +12,12 @@ import AuthContext from './components/contexts/AuthContext';
 
 
 function App() {
+  
   return (
     <>
       
       <Router>
         <Routes>
-          
           <Route path='/' element={<Home/>}/>
           <Route path='/store' element={<Main/>} exact/>
           <Route path='store/:id' element={<Product_details/>}/>
