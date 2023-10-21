@@ -48,7 +48,8 @@ const Login = () => {
       })
       .then((data) => {
         
-        authCtx.login(data.idToken, data.localId);
+        authCtx.login(data.idToken, data.localId, email);
+        localStorage.setItem("emailOfLogger", email);
         alert('Authentication successful!'); 
         navigateToStore();
 

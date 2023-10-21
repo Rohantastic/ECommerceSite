@@ -1,58 +1,85 @@
-import React, { createContext, useState } from "react";
+// CartItemContext.jsx
+
+import React, { createContext, useState, useEffect } from "react";
 
 export const CartItemContext = createContext(null);
 
 const CartItemProvider = (props) => {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
+  const [userEmail, setUserEmail] = useState('');
 
+  // Function to update the 'data' state
+  const updateData = (newData) => {
+    setData(newData);
+  };
 
-
-  //function to add product into the cart
-  const addToCart = (product) => {
-
+  const addToCart = (product, email) => {
+    setUserEmail(email);
     setCount(count + 1);
     const existingData = data.find((item) => item.id === product.id);
+
     if (existingData) {
       const updatedData = data.map((item) =>
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      setData(updatedData);
+      updateData(updatedData); // Use the updateData function to update 'data'
     } else {
-      setData([...data, { ...product, quantity: 1 }]);
+      updateData([...data, { ...product, quantity: 1, userEmail: email }]);
     }
   };
 
-  //function to remove product from cart
   const removeFromCart = (id) => {
     const productToRemove = data.find((item) => item.id === id);
-  
+
     if (productToRemove) {
       if (productToRemove.quantity > 1) {
-        // If there is more than 1 quantity, decrease the quantity by 1
         const updatedData = data.map((item) =>
           item.id === id ? { ...item, quantity: item.quantity - 1 } : item
         );
-        setData(updatedData);
+        updateData(updatedData);
       } else {
-        // If there is only 1 quantity, remove the product from the cart
         const updatedData = data.filter((item) => item.id !== id);
-        setData(updatedData);
+        updateData(updatedData);
       }
     }
   };
 
+  useEffect(() => {
+    // Do something with data if needed
+  }, [data]);
 
-  //object of context 
   const contextValue = {
     addToCart,
     removeFromCart,
     data,
-    count
+    count,
+    userEmail,
+    setData: updateData, // Provide the updateData function in the context
   };
 
-  console.log(data);
+  useEffect(() => {
+    // Post data and email to the specified URL
+    const postData = async () => {
+      try {
+        const response = await fetch("https://crudcrud.com/api/ccb65ab9427246ada7a780395eac7a60/ecom", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ data, userEmail }),
+        });
 
+        if (!response.ok) {
+          console.error('Failed to post data:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error posting data:', error.message);
+      }
+    };
+
+    postData();
+  }, [data, userEmail]);
 
   return (
     <CartItemContext.Provider value={contextValue}>

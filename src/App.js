@@ -9,7 +9,8 @@ import Product_details from './components/Pages/Product_details';
 import Login from './components/Pages/Login';
 import { useContext } from 'react';
 import AuthContext from './components/contexts/AuthContext';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
         </Routes>
       </Router>
       
+      <ToastContainer />
     </>
   );
 }

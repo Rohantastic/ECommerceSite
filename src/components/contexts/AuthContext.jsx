@@ -1,26 +1,34 @@
-import React, { useState, useCallback } from 'react';
+import { createContext, useState } from 'react';
 
-const AuthContext = React.createContext({
+const AuthContext = createContext({
   token: '',
-  isLoggedIn: false,
-  login: (token) => {},
+  userId: '',
+  email: '',
+  login: (token, userId, email) => {},
   logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState('');
+  const [userId, setUserId] = useState('');
+  const [email, setEmail] = useState('');
 
-  const loginHandler = useCallback((token) => {
+  const loginHandler = (token, userId, userEmail) => {
     setToken(token);
-  }, []);
+    setUserId(userId);
+    setEmail(userEmail);
+  };
 
-  const logoutHandler = useCallback(() => {
+  const logoutHandler = () => {
     setToken('');
-  }, []);
+    setUserId('');
+    setEmail('');
+  };
 
   const contextValue = {
     token: token,
-    isLoggedIn: !!token,
+    userId: userId,
+    email: email,
     login: loginHandler,
     logout: logoutHandler,
   };

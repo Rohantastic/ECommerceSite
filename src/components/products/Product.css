@@ -31,6 +31,12 @@
   background-color: rgb(120, 199, 255);
 }
 
+.cart-button:hover{
+  background-color: red;
+}
+
 .music-items-link {
   color: black;
 }
+
+

@@ -30,6 +30,7 @@ const Product_details = () => {
           </div>
         )}
       </div>
+      
       <Footer />
     </>
   );
