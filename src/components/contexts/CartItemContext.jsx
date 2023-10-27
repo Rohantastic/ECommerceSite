@@ -1,21 +1,19 @@
-// CartItemContext.jsx
-
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const CartItemContext = createContext(null);
 
+var email = localStorage.getItem("emailOfLogger");
+email = email.replace('.','');
+email = email.replace('@','');
 const CartItemProvider = (props) => {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
-  const [userEmail, setUserEmail] = useState('');
 
-  // Function to update the 'data' state
   const updateData = (newData) => {
     setData(newData);
   };
 
-  const addToCart = (product, email) => {
-    setUserEmail(email);
+  const addToCart = (product) => {
     setCount(count + 1);
     const existingData = data.find((item) => item.id === product.id);
 
@@ -23,9 +21,12 @@ const CartItemProvider = (props) => {
       const updatedData = data.map((item) =>
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
-      updateData(updatedData); // Use the updateData function to update 'data'
+      updateData(updatedData);
     } else {
-      updateData([...data, { ...product, quantity: 1, userEmail: email }]);
+      // Don't include userEmail in the item
+      const newItem = { ...product, quantity: 1 };
+      updateData([...data, newItem]);
+      postData(newItem); // Send a POST request for the new item
     }
   };
 
@@ -45,41 +46,40 @@ const CartItemProvider = (props) => {
     }
   };
 
-  useEffect(() => {
-    // Do something with data if needed
-  }, [data]);
+  const postData = (item) => {
+    // Send a single item as a POST request
+    fetch(`https://crudcrud.com/api/fb1ed784b0254d29a94540d9c9b73147/${email}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: item.title,
+        price: item.price,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Data sent successfully:", data);
+        console.log("ID: ", data._id);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  };
 
   const contextValue = {
     addToCart,
     removeFromCart,
     data,
     count,
-    userEmail,
-    setData: updateData, // Provide the updateData function in the context
+    setData: updateData,
   };
-
-  useEffect(() => {
-    // Post data and email to the specified URL
-    const postData = async () => {
-      try {
-        const response = await fetch("https://crudcrud.com/api/ccb65ab9427246ada7a780395eac7a60/ecom", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ data, userEmail }),
-        });
-
-        if (!response.ok) {
-          console.error('Failed to post data:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error posting data:', error.message);
-      }
-    };
-
-    postData();
-  }, [data, userEmail]);
 
   return (
     <CartItemContext.Provider value={contextValue}>

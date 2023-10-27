@@ -1,76 +1,73 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Cart.css';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import { CartItemContext } from '../contexts/CartItemContext';
+import axios from 'axios';
+
+var email = localStorage.getItem("emailOfLogger");
+email = email.replace('.', '');
+email = email.replace('@', '');
 
 const Cart = () => {
-  const cartData = useContext(CartItemContext);
+  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          'https://cors-anywhere.herokuapp.com/https://crudcrud.com/api/dbc101a6becf433a81848b35259389e8/ecom'
-        );
+    if (loading) {
+      fetchCartData();
+    }
+  }, [loading]);
 
-        if (response.ok) {
-          const data = await response.json();
-          // Assuming the response is an array of items
-          cartData.setData(data);
-        } else {
-          console.error('Failed to fetch data:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      } finally {
+  const fetchCartData = async () => {
+    try {
+      const response = await axios.get(`https://crudcrud.com/api/fb1ed784b0254d29a94540d9c9b73147/${email}`);
+      if (response.status === 200) {
+        const data = response.data;
+        console.log("Fetched data:", data);
+
+        setCartItems(data); // Set the state with all cart items
         setLoading(false);
       }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array to run the effect only once on mount
-
-  let noDataPresent = 0;
-
-  if (cartData.data.length === 0) {
-    noDataPresent = 1;
-  }
-
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
+  var count = 1;
   return (
     <>
       <Header />
-      <div className="cart-container">
+      <div className='cart-container'>
         <h2>Cart</h2>
         {loading ? (
           <div>Loading...</div>
-        ) : noDataPresent !== 1 ? (
-          <div className="cart-item-table">
-            <table border="1" className="cart-table">
+        ) : cartItems.length > 0 ? (
+          <div className='cart-item-table'>
+            <table border='1' className='cart-table'>
               <thead>
                 <tr>
+
+                  <th>Sr.No</th>
                   <th>ITEM</th>
                   <th>PRICE</th>
-                  <th>QUANTITY</th>
+                  
                 </tr>
               </thead>
               <tbody>
-                {cartData.data.map((item, index) => (
-                  <tr key={index}>
+                {cartItems.map((item) => (
+                  <tr key={item._id}>
+                    <td>{count++}</td>
                     <td>{item.title}</td>
                     <td>{item.price}</td>
-                    <td>
-                      {item.quantity}{' '}
-                      <button onClick={() => cartData.removeFromCart(item.id)}>Remove</button>
-                    </td>
+                    
                   </tr>
                 ))}
               </tbody>
             </table>
+            <button className='buy-button'>Click To Buy</button>
           </div>
         ) : (
-          <>No Data Present</>
+          <>No items in the cart</>
         )}
       </div>
       <Footer />

@@ -19,7 +19,7 @@ const Navbar = (props) => {
       <NavLink to="/about">About</NavLink>
       <NavLink to="/contact">Contact us</NavLink>
       <NavLink to="/login">Log In</NavLink>
-      <NavLink to="/cart" id="cart-button" onClick={props.onClick}>Cart<span id="cart-amount">0</span></NavLink>
+      <NavLink to="/cart" id="cart-button" onClick={props.onClick}>Cart<span id="cart-amount"></span></NavLink>
     </nav>
   );
 }
