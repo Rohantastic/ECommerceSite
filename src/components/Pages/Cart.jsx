@@ -20,7 +20,7 @@ const Cart = () => {
 
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`https://crudcrud.com/api/fb1ed784b0254d29a94540d9c9b73147/${email}`);
+      const response = await axios.get(`https://crudcrud.com/api/fd85f9620ef3405fb7c89b71c1ff07ca/${email}`);
       if (response.status === 200) {
         const data = response.data;
         console.log("Fetched data:", data);

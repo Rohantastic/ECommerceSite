@@ -47,8 +47,8 @@ const CartItemProvider = (props) => {
   };
 
   const postData = (item) => {
-    // Send a single item as a POST request
-    fetch(`https://crudcrud.com/api/fb1ed784b0254d29a94540d9c9b73147/${email}`, {
+    
+    fetch(`https://crudcrud.com/api/fd85f9620ef3405fb7c89b71c1ff07ca/${email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
