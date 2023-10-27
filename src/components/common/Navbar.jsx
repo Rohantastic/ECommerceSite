@@ -6,11 +6,11 @@ import { CartItemContext } from '../contexts/CartItemContext';
 
 const Navbar = (props) => {
   
-  const authCtx = useContext(AuthContext); //to check if user has logged in or not
+  const authCtx = useContext(AuthContext); 
   
   const cartItemCtx = useContext(CartItemContext);
 
-  console.log("cartItemContext::", authCtx.email);
+  
  
   return (
     <nav className='navbar-div'>

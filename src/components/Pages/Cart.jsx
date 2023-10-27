@@ -20,12 +20,12 @@ const Cart = () => {
 
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`https://crudcrud.com/api/fd85f9620ef3405fb7c89b71c1ff07ca/${email}`);
+      const response = await axios.get(`https://crudcrud.com/api/0caf0b7e44b54c9bbac2339e786a59b9/${email}`);
       if (response.status === 200) {
         const data = response.data;
         console.log("Fetched data:", data);
 
-        setCartItems(data); // Set the state with all cart items
+        setCartItems(data); 
         setLoading(false);
       }
     } catch (error) {

@@ -23,10 +23,10 @@ const CartItemProvider = (props) => {
       );
       updateData(updatedData);
     } else {
-      // Don't include userEmail in the item
+      
       const newItem = { ...product, quantity: 1 };
       updateData([...data, newItem]);
-      postData(newItem); // Send a POST request for the new item
+      postData(newItem); 
     }
   };
 
@@ -48,7 +48,7 @@ const CartItemProvider = (props) => {
 
   const postData = (item) => {
     
-    fetch(`https://crudcrud.com/api/fd85f9620ef3405fb7c89b71c1ff07ca/${email}`, {
+    fetch(`https://crudcrud.com/api/0caf0b7e44b54c9bbac2339e786a59b9/${email}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

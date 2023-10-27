@@ -9,7 +9,7 @@ const Product_details = () => {
   const { id } = useParams();
   const specificProduct = cartElements.find((product) => product.id === parseInt(id));
 
-  console.log("specificProduct", specificProduct);
+  
 
   return (
     <>
